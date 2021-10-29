@@ -6,8 +6,7 @@ package schema
 	spec: {
 		type:     string
 		profile?: _
-		parent?: string
-    _children?: [...#Group]
-		children?: [...string] 
+		parent?:  string
+		children?: [...string]
 	}
 }

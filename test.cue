@@ -6,10 +6,25 @@ groups: [Name=string]: schema.#Group & {
 	metadata: name: Name
 }
 
-for GroupName, Group in groups if Group.spec._children != _|_ {
-  groups: "\(GroupName)": spec: children: [for x in Group.spec._children {x.metadata.name}]
-	for Child in Group.spec._children {
-		groups: "\(Child.metadata.name)": spec: parent: GroupName
+_checks: {
+	#groups: {
+		for k, v in groups {
+			"\(k)": v
+		}
+	}
+
+	checkChilds: [
+		for k, v in #groups if v.spec.children != _|_ for c in v.spec.children {
+			#groups & {"\(c)": _}
+		},
+	]
+}
+
+for GroupName, Group in groups if Group.spec.children != _|_ {
+	for Child in Group.spec.children {
+		if groups[Child] != _|_ {
+			groups: "\(Child)": spec: parent: GroupName
+		}
 	}
 }
 
@@ -28,7 +43,7 @@ groups: "acme-corp": {
 		]
 	}
 	spec: type: "organization"
-	spec: _children: [groups.infrastructure]
+	spec: children: ["infrastructure"]
 }
 
 groups: "infrastructure": {

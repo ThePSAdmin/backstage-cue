@@ -23,4 +23,5 @@ package schema
 	apiVersion: string
 	kind:       string
 	metadata:   #Metadata
+	spec?:      _
 }

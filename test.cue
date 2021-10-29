@@ -42,15 +42,15 @@ groups: "acme-corp": {
 			},
 		]
 	}
-	spec: type: "organization"
-	spec: children: ["infrastructure"]
+	spec: {
+		type: "organization"
+		children: ["infrastructure"]
+	}
 }
 
 groups: "infrastructure": {
 	metadata: {
 		description: "The infra department"
 	}
-	spec: {
-		type: "department"
-	}
+	spec: type: "department"
 }

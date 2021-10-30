@@ -1,5 +1,6 @@
 package schema
 
+
 #Labels: [string]:      string
 #Annotations: [string]: string
 #Link: {
@@ -9,7 +10,7 @@ package schema
 }
 
 #Metadata: {
-	name:         string
+	name:         =~"^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])(\\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9]))*$"
 	namespace?:   string
 	title?:       string
 	description?: string

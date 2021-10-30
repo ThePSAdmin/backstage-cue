@@ -1,6 +1,9 @@
 package backstage
 
-import "github.com/thepsadmin/backstage-cue/schema"
+import (
+	"github.com/thepsadmin/backstage-cue/schema"
+	"strings"
+)
 
 group: [Name=string]: schema.#Group & {
 	metadata: name: Name
@@ -15,6 +18,7 @@ component: [Name=string]: schema.#Component & {
 }
 
 _checks: {
+	// Group checks 
 	#group: {
 		for k, v in group {
 			"\(k)": v
@@ -23,20 +27,37 @@ _checks: {
 
 	checkGroupChildren: [
 		for k, v in #group if v.spec.children != _|_ for c in v.spec.children {
-			#group & {}
+			#group & {"\(c)": _}
 		},
 	]
 
+	// User checks
 	#user: {
 		for k, v in user {
 			"\(k)": v
 		}
 	}
 
-	checkUserChildren: [
+	checkUserMemberOf: [
 		for k, v in #user if v.spec.memberOf != _|_ for c in v.spec.memberOf {
-			#group & {}
+			#group & {"\(c)": _}
 		},
+	]
+
+	// Component checks
+
+	#component: {
+		for k, v in component {
+			"\(k)": v
+		}
+	}
+
+	checkComponentOwner: [
+		for k, v in #component {
+			if strings.Split(v.spec.owner, ":")[0] == "user" {
+				#user & {"\(strings.Split\(v.spec.owner, \":\"\)[1])": _}
+			}
+		}
 	]
 }
 

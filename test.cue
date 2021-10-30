@@ -10,12 +10,6 @@ user: [Name=string]: schema.#User & {
 	metadata: name: Name
 }
 
-backstage: groups: {
-	for k, v in group {
-		"\(k)": v
-	}
-}
-
 _checks: {
 	#group: {
 		for k, v in group {

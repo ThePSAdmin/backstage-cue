@@ -2,7 +2,7 @@ package backstage
 
 import "encoding/yaml"
 
-x: [backstage]
+x: [group, user]
 
 command: dump: {
 	task: print: {

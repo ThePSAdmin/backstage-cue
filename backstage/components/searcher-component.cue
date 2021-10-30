@@ -1,10 +1,7 @@
 package backstage
 
 component: searcher: {
-	apiVersion: "backstage.io/v1alpha1"
-	kind:       "Component"
 	metadata: {
-		name:        "searcher"
 		description: "Searcher"
 		tags: [
 			"go",

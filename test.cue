@@ -10,6 +10,10 @@ user: [Name=string]: schema.#User & {
 	metadata: name: Name
 }
 
+component: [Name=string]: schema.#Component & {
+	metadata: name: Name
+}
+
 _checks: {
 	#group: {
 		for k, v in group {

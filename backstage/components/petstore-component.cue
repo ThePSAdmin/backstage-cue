@@ -1,10 +1,7 @@
 package backstage
 
 component: petstore: {
-	apiVersion: "backstage.io/v1alpha1"
-	kind:       "Component"
 	metadata: {
-		name: "petstore"
 		// This is an extra long description
 		description: "The Petstore is an example API used to show features of the OpenAPI spec."
 		links: [{

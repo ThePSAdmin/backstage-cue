@@ -1,6 +1,5 @@
 package schema
 
-
 #Labels: [string]:      string
 #Annotations: [string]: string
 #Link: {

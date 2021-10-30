@@ -1,10 +1,7 @@
 package backstage
 
 component: "playback-order": {
-	apiVersion: "backstage.io/v1alpha1"
-	kind:       "Component"
 	metadata: {
-		name:        "playback-order"
 		description: "Playback Order"
 		tags: [
 			"java",

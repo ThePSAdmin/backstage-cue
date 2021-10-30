@@ -1,10 +1,7 @@
 package backstage
 
 component: "artist-lookup": {
-	apiVersion: "backstage.io/v1alpha1"
-	kind:       "Component"
 	metadata: {
-		name:        "artist-lookup"
 		description: "Artist Lookup"
 		tags: [
 			"java",

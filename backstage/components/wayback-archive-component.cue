@@ -1,10 +1,7 @@
 package backstage
 
 component: "wayback-archive": {
-	apiVersion: "backstage.io/v1alpha1"
-	kind:       "Component"
 	metadata: {
-		name:        "wayback-archive"
 		description: "Archive of the wayback machine"
 	}
 	spec: {

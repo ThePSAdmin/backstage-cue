@@ -1,10 +1,7 @@
 package backstage
 
 component: "wayback-search": {
-	apiVersion: "backstage.io/v1alpha1"
-	kind:       "Component"
 	metadata: {
-		name:        "wayback-search"
 		description: "Search of the wayback machine"
 	}
 	spec: {

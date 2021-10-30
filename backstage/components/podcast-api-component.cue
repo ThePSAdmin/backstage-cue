@@ -1,0 +1,19 @@
+package backstage
+
+component: "podcast-api": {
+	apiVersion: "backstage.io/v1alpha1"
+	kind:       "Component"
+	metadata: {
+		name:        "podcast-api"
+		description: "Podcast API"
+		tags: [
+			"java",
+		]
+	}
+	spec: {
+		type:      "service"
+		lifecycle: "experimental"
+		owner:     "team-b"
+		system:    "podcast"
+	}
+}

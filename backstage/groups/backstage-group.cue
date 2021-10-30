@@ -11,6 +11,6 @@ group: backstage: {
 			email:       "backstage@example.com"
 			picture:     "https://avatars.dicebear.com/api/identicon/backstage@example.com.svg?background=%23fff&margin=25"
 		}
-		children: [group."team-a", group."team-b"]
+		_children: [group."team-a", group."team-b"]
 	}
 }

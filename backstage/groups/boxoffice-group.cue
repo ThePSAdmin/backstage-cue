@@ -10,6 +10,6 @@ group: boxoffice: {
 			displayName: "Box Office"
 			email:       "boxoffice@example.com"
 		}
-		children: [group."team-c", group."team-d"]
+		_children: [group."team-c", group."team-d"]
 	}
 }

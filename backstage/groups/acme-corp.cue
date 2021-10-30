@@ -16,6 +16,6 @@ group: "acme-corp": {
 	}
 	spec: {
 		type: "organization"
-		children: ["infrastructure"]
+		children: [group.infrastructure]
 	}
 }

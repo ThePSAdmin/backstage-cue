@@ -6,6 +6,6 @@ group: infrastructure: {
 	}
 	spec: {
 		type: "department"
-		children: ["backstage", "boxoffice"]
+		children: [group."backstage", group."boxoffice"]
 	}
 }

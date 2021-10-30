@@ -1,56 +1,51 @@
-package test
+package backstage
 
 import "github.com/thepsadmin/backstage-cue/schema"
 
-groups: [Name=string]: schema.#Group & {
+group: [Name=string]: schema.#Group & {
 	metadata: name: Name
 }
 
+user: [Name=string]: schema.#User & {
+	metadata: name: Name
+}
+
+backstage: groups: {
+	for k, v in group {
+		"\(k)": v
+	}
+}
+
 _checks: {
-	#groups: {
-		for k, v in groups {
+	#group: {
+		for k, v in group {
 			"\(k)": v
 		}
 	}
 
-	checkChilds: [
-		for k, v in #groups if v.spec.children != _|_ for c in v.spec.children {
-			#groups & {"\(c)": _}
+	checkGroupChildren: [
+		for k, v in #group if v.spec.children != _|_ for c in v.spec.children {
+			#group & {}
+		},
+	]
+
+	#user: {
+		for k, v in user {
+			"\(k)": v
+		}
+	}
+
+	checkUserChildren: [
+		for k, v in #user if v.spec.memberOf != _|_ for c in v.spec.memberOf {
+			#group & {}
 		},
 	]
 }
 
-for GroupName, Group in groups if Group.spec.children != _|_ {
+for GroupName, Group in group if Group.spec.children != _|_ {
 	for Child in Group.spec.children {
-		if groups[Child] != _|_ {
-			groups: "\(Child)": spec: parent: GroupName
+		if group[Child] != _|_ {
+			group: "\(Child)": spec: parent: GroupName
 		}
 	}
-}
-
-groups: "acme-corp": {
-	metadata: {
-		description: "The acme-corp organization"
-		links: [
-			{
-				url:   "http://www.acme.com/"
-				title: "Website"
-			},
-			{
-				url:   "https://meta.wikimedia.org/wiki/"
-				title: "Intranet"
-			},
-		]
-	}
-	spec: {
-		type: "organization"
-		children: ["infrastructure"]
-	}
-}
-
-groups: "infrastructure": {
-	metadata: {
-		description: "The infra department"
-	}
-	spec: type: "department"
 }

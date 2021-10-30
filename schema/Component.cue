@@ -6,7 +6,11 @@ package schema
 	spec: {
 		type:      string
 		lifecycle: string
-		_owner:    #Group
-		owner:     _owner.metadata.name
+		owner:     string
+		system?: string
+		subcomponentOf?: string 
+	  providesApis?: [...string]
+	  consumesApis?: [...string]
+		dependsOn?: [...string]
 	}
 }
